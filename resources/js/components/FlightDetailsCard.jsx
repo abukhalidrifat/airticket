@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { limitChar } from "../../utils/limitchar";
+import { Link } from "@inertiajs/react";
 
 export default function FlightDetailsCard() {
     const [activeBtn, setActiveBtn] = useState("from");
@@ -188,7 +189,7 @@ export default function FlightDetailsCard() {
                     >
                         $ 2500
                     </p>
-                    <button className="btn-primary m-0 mt-4">Select</button>
+                    <Link id="selectTicket" href={route('reviewFlight')} as="button" className="btn-primary m-0 mt-4">Select</Link>
                 </div>
             </div>
             <div className="w-full bg-gray-200 rounded-b-lg py-2 px-2 flex flex-col">

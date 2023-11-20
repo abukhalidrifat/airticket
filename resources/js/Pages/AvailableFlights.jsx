@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Header from "../components/Header";
 import FlightSearch from "../components/FlightSearch";
 import FlightDetailsCard from "../components/FlightDetailsCard";
+import TimeOut from "../components/TimeOut";
 export default function AvailableFlights() {
     const [active, setActive] = useState("cheapest");
     const [priceRange, setPriceRange] = useState(2000);
     const [deparature, setDeparature] = useState([]);
-    const [second, setSecond] = useState(59);
-    const [minute, setMinute] = useState(29);
 
     const handleDepartureTime = (time) => {
         if (deparature.includes(time)) {
@@ -20,42 +19,6 @@ export default function AvailableFlights() {
         }
     };
 
-    useEffect(() => {
-        function countDown() {
-            const startTime = new Date();
-            // Set the date we're counting down to
-            const countDownDate = new Date(
-                startTime.getTime() + 30 * 60000
-            ).getTime();
-
-            // Update the count down every 1 second
-            const x = setInterval(function () {
-                // Get today's date and time
-                const now = new Date().getTime();
-
-                // Find the distance between now and the count down date
-                const distance = countDownDate - now;
-
-                // Time calculations for days, hours, minutes and seconds
-                const minutes = Math.floor(
-                    (distance % (1000 * 60 * 60)) / (1000 * 60)
-                );
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // If the count down is finished, write some text
-                setSecond(seconds);
-                setMinute(minutes);
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    console.log("[TIMED OUT!]");
-                }
-            }, 1000);
-        }
-        countDown();
-        return () => countDown();
-    }, []);
-
     return (
         <>
             <Header />
@@ -65,15 +28,8 @@ export default function AvailableFlights() {
             <br />
             <br />
             <section className="mycontainer flex justify-between">
-                <div id="left" className="bg-white w-[400px] rounded-md p-4">
-                    <div id="timeRemaining">
-                        <p className="text-lg font-bold text-slate-600 text-center">
-                            Session Timeout in
-                        </p>
-                        <p className="text-2xl font-bold text-slate-400 text-center">
-                            {minute} min {second} sec
-                        </p>
-                    </div>
+                <div id="left" className="bg-white w-[400px] rounded-md p-4 mt-8 shadow-md">
+                   <TimeOut/>
                     <hr className="mt-6" />
                     <div id="priceRange">
                         <p className="text-lg font-bold text-slate-600 text-left mt-2">
@@ -430,7 +386,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -450,7 +406,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -464,7 +420,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -478,7 +434,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -498,7 +454,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -518,7 +474,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -532,7 +488,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"
@@ -552,7 +508,7 @@ export default function AvailableFlights() {
                                 id="default-checkbox"
                                 type="checkbox"
                                 value=""
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                             />
                             <label
                                 for="default-checkbox"

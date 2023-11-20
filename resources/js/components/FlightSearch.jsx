@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/inertia-react";
+import { Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 
 export default function FlightSearch({ topStyle }) {
@@ -31,7 +31,7 @@ export default function FlightSearch({ topStyle }) {
 
     return (
         <div
-            className={`mycontainer p-4 bg-white h-[300px] rounded-md relative ${topStyle}`}
+            className={`mycontainer p-4 bg-white h-[300px] rounded-md relative shadow-md ${topStyle}`}
         >
             <div id="top" className="flex items-center border-b-2 px-4 pb-3">
                 <svg
@@ -408,7 +408,7 @@ export default function FlightSearch({ topStyle }) {
                 </div>
                 <div id="btn" className="ml-8 mt-8">
                     <Link
-                        href="/search-flights"
+                        href={route('availableFlights')}
                         as="button"
                         className="mt-2 focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm p-2 me-2 mb-2 tracking-wide ring-2 ring-green-400 ring-offset-1"
                     >
