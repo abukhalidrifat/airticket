@@ -31,7 +31,7 @@ export default function TimeOut() {
 
                 if (distance < 0) {
                     clearInterval(x);
-                    alert('TIME Up! SESSION EXPIRED.')
+                    alert('TIME UP! SESSION EXPIRED.')
                     setSecond(0);
                     setMinute(0);
                 }

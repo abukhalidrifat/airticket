@@ -39,8 +39,10 @@ export default function FlightRoutes() {
                 </div>
                 <div
                     id="airlines"
-                    className="text-left mt-12 mb-16 flex flex-wrap gap-8"
+                    className="text-left mt-12 mb-16 flex flex-wrap gap-3"
                 >
+                    <FlightCards/>
+                    <FlightCards/>
                     <FlightCards/>
                     <FlightCards/>
                     <FlightCards/>

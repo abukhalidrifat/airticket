@@ -31,7 +31,7 @@ export default function FlightSearch({ topStyle }) {
 
     return (
         <div
-            className={`mycontainer p-4 bg-white h-[300px] rounded-md relative shadow-md ${topStyle}`}
+            className={`mycontainer p-6 bg-white h-[300px] rounded-md relative shadow-md ${topStyle}`}
         >
             <div id="top" className="flex items-center border-b-2 px-4 pb-3">
                 <svg
@@ -85,7 +85,7 @@ export default function FlightSearch({ topStyle }) {
                     <div id="traveller">
                         <button
                             onClick={() => setShowOptions(!showOptions)}
-                            className="mt-2 bg-green-300 border-2 border-green-300 text-green-800 text-base font-medium rounded-lg focus:ring-green-500 focus:border-green-500 block p-2 hover:bg-green-400"
+                            className="mt-2 bg-green-400 border-2 border-green-400 text-white text-sm font-medium rounded-lg focus:ring-green-400 focus:border-green-500 block p-2 hover:bg-green-500"
                         >
                             {adults + kid + children + infant} Traveller{" "}
                             <svg
@@ -104,7 +104,7 @@ export default function FlightSearch({ topStyle }) {
                         {showOptions && (
                             <div
                                 id="travellerModal"
-                                className="absolute border-2 border-slate-200 shadow-md bg-white w-[240px] h-[200px] p-4 rounded-md mt-2"
+                                className="absolute border-2 border-slate-200 shadow-md bg-white w-[260px] h-[200px] p-4 rounded-md mt-2"
                             >
                                 <div
                                     id="input"
@@ -116,7 +116,7 @@ export default function FlightSearch({ topStyle }) {
                                             (12 years & above)
                                         </p>
                                     </div>
-                                    <div className="mt-1">
+                                    <div className="w-24 flex justify-between">
                                         <button
                                             onClick={() =>
                                                 setAdults((p) => p - 1)
@@ -170,7 +170,7 @@ export default function FlightSearch({ topStyle }) {
                                             (From 5 to under 12)
                                         </p>
                                     </div>
-                                    <div className="mt-1">
+                                    <div className="w-24 flex justify-between">
                                         <button
                                             onClick={() =>
                                                 setChildren((p) => p - 1)
@@ -189,7 +189,7 @@ export default function FlightSearch({ topStyle }) {
                                                 />
                                             </svg>
                                         </button>
-                                        <span className="text-slate-600 text-xl font-medium px-2">
+                                        <span className="text-slate-600 text-xl font-medium px-2 inline-block">
                                             {children}
                                         </span>
                                         <button
@@ -222,7 +222,7 @@ export default function FlightSearch({ topStyle }) {
                                             (From 2 to under 5)
                                         </p>
                                     </div>
-                                    <div className="mt-1">
+                                    <div className="w-24 flex justify-between">
                                         <button
                                             onClick={() => setKid((p) => p - 1)}
                                             className="w-8 h-8 pl-1  rounded-full border-2 border-green-600 hover:bg-slate-400"
@@ -270,7 +270,7 @@ export default function FlightSearch({ topStyle }) {
                                             (Under 2 years)
                                         </p>
                                     </div>
-                                    <div className="mt-1">
+                                    <div className="w-24 flex justify-between">
                                         <button
                                             onClick={() =>
                                                 setInfant((p) => p - 1)
@@ -317,10 +317,10 @@ export default function FlightSearch({ topStyle }) {
                     </div>
                     <select
                         id="countries"
-                        className="mt-2 bg-green-300 border-2 border-green-300 text-green-800 text-base font-medium rounded-lg focus:ring-green-500 focus:border-green-500 block p-2 hover:bg-green-400"
+                        className="mt-2 bg-green-400 border-2 border-green-400 text-white text-sm font-medium rounded-lg focus:ring-green-400 focus:border-green-500 block p-2 hover:bg-green-500"
                     >
                         <option value="US">Economy</option>
-                        <option value="US">Economy</option>
+                        <option value="US">Business</option>
                         <option value="US">Economy</option>
                         <option value="US">Economy</option>
                     </select>
@@ -408,7 +408,7 @@ export default function FlightSearch({ topStyle }) {
                 </div>
                 <div id="btn" className="ml-8 mt-8">
                     <Link
-                        href={route('availableFlights')}
+                        href={route("availableFlights")}
                         as="button"
                         className="mt-2 focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm p-2 me-2 mb-2 tracking-wide ring-2 ring-green-400 ring-offset-1"
                     >

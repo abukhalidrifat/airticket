@@ -1,9 +1,9 @@
 import React from "react";
 import AirlinesCard from "./AirlinesCard";
 
-export default function SearchTop() {
+export default function SearchTop({bgColor='bg-slate-200'}) {
     return (
-        <div className="bg-slate-200 py-8">
+        <div className={`py-8 ${bgColor}`}>
             <div className="mycontainer text-center">
                 <p className="text-4xl mt-16 font-bold tracking-wide">
                     Search Top Airlines
@@ -16,7 +16,7 @@ export default function SearchTop() {
                 </p>
                 <div
                     id="airlines"
-                    className="text-left mt-8 mb-16 flex flex-wrap gap-8"
+                    className="text-left mt-8 mb-16 flex flex-wrap gap-3"
                 >
                     <AirlinesCard />
                     <AirlinesCard />

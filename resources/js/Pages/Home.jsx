@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import ExclusiveOffers from "../components/ExclusiveOffers";
@@ -9,21 +9,25 @@ import TourPackage from "../components/TourPackage";
 import FlightRoutes from "../components/FlightRoutes";
 import Footer from "../components/Footer";
 
-export default function Hello() {
+export default function Hello({ response }) {
+    useEffect(() => {
+        console.log(response);
+    }, []);
+
     return (
         <>
             <Header />
             <br />
             <br />
             <br />
-            <Hero/>
-            <ExclusiveOffers/>
-            <ExploreBD/>
-            <SearchTop/>
-            <PopularDestination/>
-            <TourPackage/>
-            <FlightRoutes/>
-            <Footer/>
+            <Hero />
+            <ExclusiveOffers />
+            <ExploreBD />
+            <SearchTop />
+            <PopularDestination />
+            <TourPackage />
+            <FlightRoutes />
+            <Footer />
         </>
     );
 }

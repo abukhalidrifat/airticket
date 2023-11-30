@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .mycontainer {
-    max-width: 75%;
+    max-width: 80%;
     margin: auto;
 }
-
 
 @layer components {
     .btn-primary {
         @apply focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 tracking-wide;
+    }
+    .title{
+        @apply pt-4 pb-2 font-semibold text-xl text-slate-700
+    }
+    .subtitle{
+        @apply text-slate-500 text-base
     }
 }
 @layer base{

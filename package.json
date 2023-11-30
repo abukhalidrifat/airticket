@@ -22,9 +22,15 @@
     "dependencies": {
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/react": "^1.0.14",
+        "@radix-ui/react-accordion": "^1.1.2",
         "@vitejs/plugin-react": "^4.2.0",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.0.0",
+        "lucide-react": "^0.294.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "swiper": "^11.0.4"
+        "swiper": "^11.0.4",
+        "tailwind-merge": "^2.0.0",
+        "tailwindcss-animate": "^1.0.7"
     }
 }

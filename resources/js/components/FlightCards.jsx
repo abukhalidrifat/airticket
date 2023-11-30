@@ -3,7 +3,7 @@ import { limitChar } from "../../utils/limitchar";
 
 export default function FlightCards() {
     return (
-        <div className="bg-slate-200 p-4 rounded-md flex items-center hover:border-green-400 border-slate-300 border-2 cursor-pointer">
+        <div className="w-[290px] bg-slate-200 p-2 rounded-md flex items-center hover:border-green-400 border-slate-300 border-2 cursor-pointer">
             <div id="from">
                 <p className="text-slate-700 font-semibold text-base">Dhaka</p>
                 <p className="text-slate-500 font-medium text-sm">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FlightController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,18 +16,23 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('/', [FlightController::class,'index'])->name('home');
+
+Route::get('/api',[FlightController::class, 'store']);
 
 Route::get('/flight/search', function () {
-    sleep(2);
     return Inertia::render('AvailableFlights');
 })->name('availableFlights');
 
 Route::get('/flight/review', function () {
     return Inertia::render('ReviewFlight');
 })->name('reviewFlight');
+
+Route::get('/airline/{airlinename}', function (string $airlinename) {
+    return Inertia::render('Airline',[
+        'airline' => $airlinename
+    ]);
+})->name('airline');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

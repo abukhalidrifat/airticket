@@ -8,7 +8,7 @@ register();
 export default function PopularDestination() {
     const slides = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     return (
-        <div className="h-screen py-16">
+        <div className="py-16">
             <div className="mycontainer">
                 <p className="text-4xl mt-16 font-bold tracking-wide">
                     Most Popular Destinations
