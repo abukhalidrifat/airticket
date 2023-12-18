@@ -23,7 +23,7 @@ export default function Hero({airlineName = null,bgColor = 'bg-slate-200'}) {
                 </div>
             </div>
             <div className={bgColor}>
-            <FlightSearch topStyle={'-top-16'}/>
+            <FlightSearch topStyle={'-top-16 xsm:-top-8'}/>
             </div>
         </>
     );

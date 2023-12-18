@@ -1,9 +1,15 @@
 import { Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
+import DatePicker from "./DatePicker";
+import DatePickerWithRange from "./DatePickerRange";
+import { Combobox } from "./Combobox";
+import { X } from "lucide-react";
 
 export default function FlightSearch({ topStyle }) {
     const [activeBtn, setActiveBtn] = useState("oneway");
     const [showOptions, setShowOptions] = useState(false);
+    const [airportOne, setAirportOne] = useState("");
+    const [airportTwo, setAirportTwo] = useState("");
     const [adults, setAdults] = useState(1);
     const [children, setChildren] = useState(0);
     const [kid, setKid] = useState(0);
@@ -29,9 +35,21 @@ export default function FlightSearch({ topStyle }) {
         }
     }, [infant]);
 
+    const handleGetAirportOne = (name) => {
+        setAirportOne(name);
+    };
+    const handleGetAirportTwo = (name) => {
+        setAirportTwo(name);
+    };
+
+    const reverseAirport = () => {
+        setAirportOne(airportTwo);
+        setAirportTwo(airportOne);
+    };
+
     return (
         <div
-            className={`mycontainer p-6 bg-white h-[300px] rounded-md relative shadow-md ${topStyle}`}
+            className={`mycontainer p-6 bg-white h-[300px] xlg:h-auto rounded-md relative shadow-md ${topStyle}`}
         >
             <div id="top" className="flex items-center border-b-2 px-4 pb-3">
                 <svg
@@ -47,8 +65,8 @@ export default function FlightSearch({ topStyle }) {
                 </svg>
                 <p className="text-slate-600 text-base font-medium">Flight</p>
             </div>
-            <div id="middle" className="flex justify-between">
-                <div id="button" className="my-2">
+            <div id="middle" className="flex justify-between xmd:flex-col">
+                <div id="button" className="my-2 flex xsm:flex-wrap xsm:gap-y-3">
                     <button
                         onClick={() => setActiveBtn("oneway")}
                         className={`${
@@ -66,7 +84,7 @@ export default function FlightSearch({ topStyle }) {
                             activeBtn == "roundtrip"
                                 ? "bg-green-400 text-white hover:bg-green-500"
                                 : "bg-slate-300 text-slate-600 hover:bg-slate-400"
-                        } focus:outline-none font-medium rounded-md text-sm px-3 py-2 me-2 tracking-wide ml-1`}
+                        } xsm:ml-3 focus:outline-none font-medium rounded-md text-sm px-3 py-2 me-2 tracking-wide ml-1`}
                     >
                         Round Trip
                     </button>
@@ -76,12 +94,12 @@ export default function FlightSearch({ topStyle }) {
                             activeBtn == "multicity"
                                 ? "bg-green-400 text-white hover:bg-green-500"
                                 : "bg-slate-300 text-slate-600 hover:bg-slate-400"
-                        } focus:outline-none font-medium rounded-md text-sm px-3 py-2 me-2 tracking-wide ml-1`}
+                        } xsm:ml-3 focus:outline-none font-medium rounded-md text-sm px-3 py-2 me-2 tracking-wide ml-1`}
                     >
                         Multi City
                     </button>
                 </div>
-                <div id="options" className="flex gap-4">
+                <div id="options" className="flex flex-wrap gap-x-4 gap-y-2 xmd:ml-3">
                     <div id="traveller">
                         <button
                             onClick={() => setShowOptions(!showOptions)}
@@ -104,8 +122,14 @@ export default function FlightSearch({ topStyle }) {
                         {showOptions && (
                             <div
                                 id="travellerModal"
-                                className="absolute border-2 border-slate-200 shadow-md bg-white w-[260px] h-[200px] p-4 rounded-md mt-2"
+                                className="absolute border-2 border-slate-200 shadow-md bg-white w-[260px] h-[235px] p-4 rounded-md mt-2 z-50 flex flex-col"
                             >
+                                <button
+                                    onClick={() => setShowOptions(!showOptions)}
+                                    className="mb-3 bg-red-400 text-red-950 w-fit p-1 rounded-full self-end"
+                                >
+                                    <X />
+                                </button>
                                 <div
                                     id="input"
                                     className="flex justify-between"
@@ -326,104 +350,114 @@ export default function FlightSearch({ topStyle }) {
                     </select>
                 </div>
             </div>
-            <div id="input" className="mt-8 flex justify-center items-center">
-                <div id="input1">
-                    <label
-                        htmlFor="depart"
-                        className="text-lg font-normal text-slate-500"
-                    >
-                        From:
-                    </label>
-                    <select
-                        id="countries"
-                        className="mt-2 bg-white border border-gray-300 text-slate-600 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5 w-[250px] h-[50px] appearance-none"
-                    >
-                        <option value="US">
-                            Dhaka | Hazrat Shahjalal International Airport
-                        </option>
-                    </select>
-                </div>
+            <div
+                id="input"
+                className="mt-8 flex justify-between items-center xlg:flex-col"
+            >
                 <div
-                    id="reverse"
-                    className="-mx-2 mt-10 relative z-40 bg-slate-200 rounded-full w-fit p-1 cursor-pointer hover:bg-green-400 hover:text-white transition-all duration-200"
+                    id="searchAirport"
+                    className="flex relative gap-2 xlg:flex-col xlg:w-full"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 21 21"
-                    >
-                        <path
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="m8.5 10.5l-4 4l4 4m8-4h-12m8-12l4 4l-4 4m4-4h-12"
+                    <div id="fromDestination" className="ml-3">
+                        <label
+                            htmlFor="depart"
+                            className="text-xl font-medium text-slate-500 self-center"
+                        >
+                            From:
+                        </label>
+                        <Combobox
+                            className={"mt-3 xlg:w-full "}
+                            onSelectAirport={handleGetAirportOne}
+                            airportVal={airportOne}
                         />
-                    </svg>
-                </div>
-                <div id="input1">
-                    <label
-                        htmlFor="depart"
-                        className="text-lg font-normal text-slate-500"
-                    >
-                        To:
-                    </label>
-                    <select
-                        id="countries"
-                        className="mt-2 bg-white border border-gray-300 text-slate-600 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5 w-[250px] h-[50px] appearance-none"
-                    >
-                        <option value="US">
-                            Dhaka | Hazrat Shahjalal International Airport
-                        </option>
-                    </select>
-                </div>
-                <div id="fromdate" className="ml-8">
-                    <label
-                        htmlFor="depart"
-                        className="text-lg font-normal text-slate-500"
-                    >
-                        Depart:
-                    </label>
-                    <input
-                        type="date"
-                        name="fromdate"
-                        id="fromdate"
-                        className="mt-2 bg-white border border-gray-300 text-slate-600 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5 w-[200px] h-[50px] appearance-none"
-                    />
-                </div>
-                <div id="todate" className="ml-8">
-                    <label
-                        htmlFor="depart"
-                        className="text-lg font-normal text-slate-500"
-                    >
-                        Return:
-                    </label>
-                    <input
-                        type="date"
-                        name="fromdate"
-                        id="fromdate"
-                        className="mt-2 bg-white border border-gray-300 text-slate-600 text-base rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5 w-[200px] h-[50px] appearance-none"
-                    />
-                </div>
-                <div id="btn" className="ml-8 mt-8">
-                    <Link
-                        href={route("availableFlights")}
-                        as="button"
-                        className="mt-2 focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm p-2 me-2 mb-2 tracking-wide ring-2 ring-green-400 ring-offset-1"
+                    </div>
+                    <div
+                        id="reverse"
+                        className="-mx-2 mt-10 xlg:mt-11 absolute right-[48%] xxl:right-[46%] xlg:right-[5%] xlg:top-16 top-2 z-40 bg-slate-200 rounded-full w-fit p-1 cursor-pointer hover:bg-green-400 hover:text-white transition-all duration-200"
+                        onClick={() => reverseAirport()}
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="26"
-                            height="26"
-                            viewBox="0 0 16 16"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 21 21"
                         >
                             <path
-                                fill="currentColor"
-                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m8.5 10.5l-4 4l4 4m8-4h-12m8-12l4 4l-4 4m4-4h-12"
                             />
                         </svg>
-                    </Link>
+                    </div>
+                    <div id="toDestination" className="lg:ml-3">
+                        <label
+                            htmlFor="depart"
+                            className="text-xl font-medium text-slate-500"
+                        >
+                            To:
+                        </label>
+                        <Combobox
+                            className={"mt-3 xlg:w-full"}
+                            airportVal={airportTwo}
+                            onSelectAirport={handleGetAirportTwo}
+                        />
+                    </div>
+                </div>
+                <div
+                    id="btnAndDate"
+                    className="flex flex-wrap justify-between self-stretch"
+                >
+                    {activeBtn == "oneway" ? (
+                        <div
+                            id="oneWayDate"
+                            className="ml-8 xlg:ml-3 xlg:mt-3 xlg:self-start"
+                        >
+                            <label
+                                htmlFor="depart"
+                                className="text-xl font-medium text-slate-500"
+                            >
+                                Select Date:
+                            </label>
+                            <div className="mt-3 xlg:w-full">
+                                <DatePicker />
+                            </div>
+                        </div>
+                    ) : null}
+                    {activeBtn == "roundtrip" ? (
+                        <div
+                            id="roundWayDate"
+                            className="ml-8 xlg:ml-3 xlg:mt-3 xlg:self-start"
+                        >
+                            <label
+                                htmlFor="depart"
+                                className="text-xl font-medium text-slate-500"
+                            >
+                                Select Date:
+                            </label>
+                            <DatePickerWithRange className={"mt-3"} />
+                        </div>
+                    ) : null}
+                    <div id="btn" className="ml-8 mt-8 self-end">
+                        <Link
+                            href={route("availableFlights")}
+                            as="button"
+                            className="mt-2 focus:outline-none text-white bg-green-400 hover:bg-green-500 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm p-2 me-2 mb-2 tracking-wide ring-2 ring-green-400 ring-offset-1"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="26"
+                                height="26"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0a5.5 5.5 0 0 1 11 0z"
+                                />
+                            </svg>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

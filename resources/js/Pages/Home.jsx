@@ -8,11 +8,9 @@ import PopularDestination from "../components/PopularDestination";
 import TourPackage from "../components/TourPackage";
 import FlightRoutes from "../components/FlightRoutes";
 import Footer from "../components/Footer";
+import SwiperDemo from "@/components/SwiperDemo";
 
 export default function Hello({ response }) {
-    useEffect(() => {
-        console.log(response);
-    }, []);
 
     return (
         <>
@@ -22,12 +20,18 @@ export default function Hello({ response }) {
             <br />
             <Hero />
             <ExclusiveOffers />
-            <ExploreBD />
+            <SwiperDemo/>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            {/* <ExploreBD />
             <SearchTop />
             <PopularDestination />
             <TourPackage />
             <FlightRoutes />
-            <Footer />
+            <Footer /> */}
         </>
     );
 }

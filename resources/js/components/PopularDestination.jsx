@@ -26,6 +26,7 @@ export default function PopularDestination() {
                         speed="500"
                         loop="true"
                         css-mode="true"
+                        space-between="20"
                     >
                         {slides.map((data, index) => (
                             <swiper-slide key={index}>
